@@ -49,33 +49,41 @@ The model.py file contains the code for training and saving the convolution neur
 
 My model consists of:
 
-| Layer                 |     Description                       |
-|-----------------------|:-------------------------------|
-| Input                 | 160x320x3 image                       |
-| Normalization         | pixel value/255.0 - 0.5      |
-| Cropping              | Crop top 50 and bottom 20 pixels|
-| Convolution 5x5       | 5x5 kernel, 24 outputs|
-| Pooling 2x2           | 2x2 pool_size|
-| RELU                  |         |                                              |
-| Convolution 5x5       | 5x5 kernel, 36 outputs|
-| Pooling 2x2           | 2x2 pool_size|
-| RELU                  |         |  
-| Convolution 5x5       | 5x5 kernel, 48 outputs|
-| Pooling 2x2           | 2x2 pool_size|
-| RELU                  |         |  
-| Dropout               | ratio of 0.25 dropout to not overfit|
-| Convolution 3x3       | 3x3 kernel, 64 outputs|
-| Pooling 2x2           | 2x2 pool_size|
-| RELU                  |         |
-| Convolution 3x3       | 3x3 kernel, 64 outputs|
-| Pooling 2x2           | 2x2 pool_size|
-| RELU                  |         |
-| Flatten               |     |
-| Fully connected       | output 100        |
-| Dropout               | ratio of 0.25 dropout to not overfit|
-| Fully connected       | output 50          |
-| Fully connected       | output 10           |
-| Fully connected       | output 1 (measurement)   |
+|Layer (type)                                     |                  Output Shape                                     |           Param #                |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|lambda_1 (Lambda)                                     |             (None, 160, 320, 3)                                     |    0                      |
+|cropping2d_1 (Cropping2D)                                     |     (None, 90, 320, 3)                                     |     0                      |
+|conv2d_1 (Conv2D)                                     |             (None, 86, 316, 24)                                     |    1824                   |
+|max_pooling2d_1 (MaxPooling2D)                                     |(None, 43, 158, 24)                                     |    0                      |
+|activation_1 (Activation)                                     |     (None, 43, 158, 24)                                     |    0                      |
+|conv2d_2 (Conv2D)                                     |             (None, 39, 154, 36)                                     |    21636                  |
+|max_pooling2d_2 (MaxPooling2D)                                     |(None, 19, 77, 36)                                     |     0                      |
+|activation_2 (Activation)                                     |     (None, 19, 77, 36)                                     |     0                      |
+|conv2d_3 (Conv2D)                                     |             (None, 15, 73, 48)                                     |     43248                  |
+|max_pooling2d_3 (MaxPooling2D)                                     |(None, 7, 36, 48)                                     |      0                      |
+|activation_3 (Activation)                                     |     (None, 7, 36, 48)                                     |      0                      |
+|dropout_1 (Dropout)                                     |           (None, 7, 36, 48)                                     |      0                      |
+|conv2d_4 (Conv2D)                                     |             (None, 5, 34, 64)                                     |      27712                  |
+|activation_4 (Activation)                                     |     (None, 5, 34, 64)                                     |      0                      |
+|dropout_2 (Dropout)                                     |           (None, 5, 34, 64)                                     |      0                      |
+|conv2d_5 (Conv2D)                                     |             (None, 3, 32, 64)                                     |      36928                  |
+|activation_5 (Activation)                                     |     (None, 3, 32, 64)                                     |      0                      |
+|dropout_3 (Dropout)                                     |           (None, 3, 32, 64)                                     |      0                      |
+|flatten_1 (Flatten)                                     |           (None, 6144)                                     |           0                      |
+|dense_1 (Dense)                                     |               (None, 100)                                     |            614500                 |
+|activation_6 (Activation)                                     |     (None, 100)                                     |            0                      |
+|dropout_4 (Dropout)                                     |           (None, 100)                                     |            0                      |
+|dense_2 (Dense)                                     |               (None, 50)                                     |             5050                   |
+|activation_7 (Activation)                                     |     (None, 50)                                     |             0                      |
+|dropout_5 (Dropout)                                     |           (None, 50)                                     |             0                      |
+|dense_3 (Dense)                                     |               (None, 10)                                     |             510                    |
+|activation_8 (Activation)                                     |     (None, 10)                                     |             0                      |
+|dense_4 (Dense)                                     |               (None, 1)                                     |              11                     |
+|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Total params: 751,419|
+|Trainable params: 751,419|
+|Non-trainable params: 0|
+|
 
 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer.

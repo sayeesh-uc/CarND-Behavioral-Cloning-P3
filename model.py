@@ -86,6 +86,7 @@ model.add(Dropout(0.25))
 
 model.add(Convolution2D(64, kernel_size=(3,3)))
 model.add(Activation('relu'))
+model.add(Dropout(0.25))
 
 model.add(Convolution2D(64, kernel_size=(3,3)))
 model.add(Activation('relu'))
@@ -93,10 +94,15 @@ model.add(Dropout(0.25))
 
 model.add(Flatten())
 model.add(Dense(100))
+model.add(Activation('relu'))
 model.add(Dropout(0.25))
 
 model.add(Dense(50))
+model.add(Activation('relu'))
+model.add(Dropout(0.25))
+
 model.add(Dense(10))
+model.add(Activation('relu'))
 model.add(Dense(1))
 
 # Use mse as loss function as this is regression.
@@ -106,3 +112,5 @@ model.fit_generator(train_generator, steps_per_epoch= len(train_samples)/32,
 validation_data=validation_generator, validation_steps=len(validation_samples)/32, epochs=5, verbose = 2)
 
 model.save('model.h5')
+
+model.summary(line_length=150)
