@@ -1,4 +1,4 @@
-# **Behavioral Cloning** 
+# **Behavioral Cloning**
 
 ---
 
@@ -50,7 +50,7 @@ The model.py file contains the code for training and saving the convolution neur
 My model consists of:
 
 |Layer (type)                                     |                  Output Shape                                     |           Param #                |
-|------------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------------------------------------------------|:--------------------------------------------------------|:-------------------------------------:|
 |lambda_1 (Lambda)                                     |             (None, 160, 320, 3)                                     |    0                      |
 |cropping2d_1 (Cropping2D)                                     |     (None, 90, 320, 3)                                     |     0                      |
 |conv2d_1 (Conv2D)                                     |             (None, 86, 316, 24)                                     |    1824                   |
@@ -79,11 +79,8 @@ My model consists of:
 |dense_3 (Dense)                                     |               (None, 10)                                     |             510                    |
 |activation_8 (Activation)                                     |     (None, 10)                                     |             0                      |
 |dense_4 (Dense)                                     |               (None, 1)                                     |              11                     |
-|------------------------------------------------------------------------------------------------------------------------------------------------------|
-|Total params: 751,419|
-|Trainable params: 751,419|
-|Non-trainable params: 0|
-|
+
+Total params: 751,419
 
 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer.
